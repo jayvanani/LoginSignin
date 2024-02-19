@@ -1,14 +1,16 @@
 package com.example.logsignpage
 
 import android.content.Context
+import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
 
-class MyDatabase(var context: Context) : SQLiteOpenHelper(context,"mydata.db",null,1) {
+class MyDatabase(var context: Context) : SQLiteOpenHelper(context, "mydata.db", null, 1) {
     override fun onCreate(db: SQLiteDatabase) {
 
-        var table = "CREATE TABLE user (fullname text ,email text,username text,password text,repeatpassword text)"
+        var table =
+            "CREATE TABLE user (fullname text ,email text,username text,password text,repeatpassword text)"
         db.execSQL(table)
 
     }
@@ -22,21 +24,29 @@ class MyDatabase(var context: Context) : SQLiteOpenHelper(context,"mydata.db",nu
         username: String,
         password: String,
         repeatpassword: String
-    )
-    {
+    ) {
 
-        var insert = "INSERT INTO user VALUES ('$fullname','$email','$username','$password','$repeatpassword')"
+        var insert =
+            "INSERT INTO user VALUES ('$fullname','$email','$username','$password','$repeatpassword')"
 
         try {
             writableDatabase.execSQL(insert)
 
-        }catch (e : Exception)
-        {
+        } catch (e: Exception) {
             Log.e("-=--====", "insertdata: $e")
         }
 
     }
 
+    fun selectuser(username: String, pass: String): Cursor {
+
+        var select = "SELECT * FROM user WHERE username == '$username' AND password == '$pass'"
+
+        var cursor = readableDatabase.rawQuery(select, null)
+
+
+        return cursor
+    }
 
 
 }
