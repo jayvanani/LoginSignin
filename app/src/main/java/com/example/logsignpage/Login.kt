@@ -40,6 +40,12 @@ class Login : AppCompatActivity() {
                 username = cursor.getString(2)
                 pasword = cursor.getString(3)
                 var intent = Intent(this, StartApp::class.java)
+
+                intent.putExtra("fullname",fullname)
+                intent.putExtra("email",email)
+                intent.putExtra("username",username)
+
+
                 startActivity(intent)
             }
             Log.d("====", "onCreate: $fullname+$email+$username+$pasword")

@@ -13,6 +13,11 @@ class MyDatabase(var context: Context) : SQLiteOpenHelper(context, "mydata.db", 
             "CREATE TABLE user (fullname text ,email text,username text,password text,repeatpassword text)"
         db.execSQL(table)
 
+
+        var table2 = "CREATE TABLE tbl2 (name text,number text)"
+        db.execSQL(table2)
+
+
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
@@ -46,6 +51,18 @@ class MyDatabase(var context: Context) : SQLiteOpenHelper(context, "mydata.db", 
 
 
         return cursor
+    }
+
+    fun insert(name: String, number: String) {
+
+        var insertt = "INSERT INTO tbl2 VALUES('$name','$number')"
+
+        try {
+            writableDatabase.execSQL(insertt)
+        } catch (ee: Exception) {
+            Log.e("--", "insert:$ee")
+        }
+
     }
 
 
