@@ -13,11 +13,14 @@
         android:theme="@style/Theme.LogSignPage"
         tools:targetApi="31">
         <activity
+            android:name=".contact"
+            android:exported="false" />
+        <activity
             android:name=".StartApp"
             android:exported="false" />
         <activity
             android:name=".SignUp"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".Login"
             android:exported="true">

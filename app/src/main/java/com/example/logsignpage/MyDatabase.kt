@@ -13,6 +13,9 @@ class MyDatabase(var context: Context) : SQLiteOpenHelper(context, "mydata.db", 
             "CREATE TABLE user (fullname text ,email text,username text,password text,repeatpassword text)"
         db.execSQL(table)
 
+        var tbl2="create table tbl2 (fullname text,mobile text)"
+        db.execSQL(tbl2)
+
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
@@ -40,12 +43,24 @@ class MyDatabase(var context: Context) : SQLiteOpenHelper(context, "mydata.db", 
 
     fun selectuser(username: String, pass: String): Cursor {
 
-        var select = "SELECT * FROM user WHERE username == '$username' AND password == '$pass'"
+        var select = "SELECT * FROM user WHERE username = '$username' AND password = '$pass'"
 
         var cursor = readableDatabase.rawQuery(select, null)
 
 
         return cursor
+    }
+
+    fun insert(fullname: String, mobile: String) {
+
+        var insert="INSERT INTO tbl2 values ('$fullname','$mobile') "
+        try{
+            writableDatabase.execSQL(insert)
+        }catch (e:Exception)
+        {
+            Log.e("--","$e")
+        }
+
     }
 
 
