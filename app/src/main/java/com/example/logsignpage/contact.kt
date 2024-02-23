@@ -1,6 +1,7 @@
 package com.example.logsignpage
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.google.android.material.button.MaterialButton
@@ -26,6 +27,9 @@ class contact : AppCompatActivity() {
             var data=MyDatabase(this)
 
             data.insert(fullname.text.toString(),mobile.text.toString())
+
+
+            var intent=Intent
 
 
         }
