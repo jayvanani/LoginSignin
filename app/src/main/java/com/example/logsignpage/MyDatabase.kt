@@ -13,8 +13,15 @@ class MyDatabase(var context: Context) : SQLiteOpenHelper(context, "mydata.db", 
             "CREATE TABLE user (fullname text ,email text,username text,password text,repeatpassword text)"
         db.execSQL(table)
 
+<<<<<<< HEAD
         var tbl2="create table tbl2 (fullname text,mobile text)"
         db.execSQL(tbl2)
+=======
+
+        var table2 = "CREATE TABLE tbl2 (name text,number text)"
+        db.execSQL(table2)
+
+>>>>>>> 8d822b734d9e1d24c142d36bacc25eb1888d8e4f
 
     }
 
@@ -51,6 +58,7 @@ class MyDatabase(var context: Context) : SQLiteOpenHelper(context, "mydata.db", 
         return cursor
     }
 
+<<<<<<< HEAD
     fun insert(fullname: String, mobile: String) {
 
         var insert="INSERT INTO tbl2 values ('$fullname','$mobile') "
@@ -59,6 +67,16 @@ class MyDatabase(var context: Context) : SQLiteOpenHelper(context, "mydata.db", 
         }catch (e:Exception)
         {
             Log.e("--","$e")
+=======
+    fun insert(name: String, number: String) {
+
+        var insertt = "INSERT INTO tbl2 VALUES('$name','$number')"
+
+        try {
+            writableDatabase.execSQL(insertt)
+        } catch (ee: Exception) {
+            Log.e("--", "insert:$ee")
+>>>>>>> 8d822b734d9e1d24c142d36bacc25eb1888d8e4f
         }
 
     }
